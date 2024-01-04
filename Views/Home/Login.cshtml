@@ -1,0 +1,23 @@
+﻿@inject IConfiguration Configuration
+
+<ul class="navbar-nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Account/Manage/Index">Hello @User.Identity?.Name!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/Account/Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="@($"{Configuration["Auth0:Domain"]}/login")">Login with Auth0</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="@($"{Configuration["Auth0:Domain"]}/signup")">Register with Auth0</a>
+        </li>
+    }
+</ul>
+
